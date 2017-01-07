@@ -35,7 +35,7 @@ const objTree = {
     },
     {
       name3: 'name3',
-      city3: 'city3',
+      city3: 'city3'
     },
     {
       name4: 'name4',
@@ -50,7 +50,44 @@ const objTree = {
   ]
 };
 
+const objTreeSameProps = {
+  name: 'foo',
+  city: 'bar',
+  children: [
+    {
+      name2: 'foo2',
+      city2: 'city2',
+      children: [
+        {
+          name5: 'name5',
+          city2: 'city2'
+        },
+        {
+          name6: 'name6',
+          city6: 'city6',
+          children: [
+            {
+              name8: 'name8'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name6: 'name6',
+      city2: 'city2'
+    },
+    {
+      name4: 'name4',
+      city2: 'city2',
+      children: [
+        {
+          name7: 'name7',
+          city2: 'city2'
+        }
+      ]
+    }
+  ]
+};
 
-
-
-export { emptyObj, objWithoutChildren, objWithEmptyChildren, objTree };
+export { emptyObj, objWithoutChildren, objWithEmptyChildren, objTree, objTreeSameProps };
