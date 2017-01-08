@@ -1,5 +1,5 @@
-/* It iterates through each level and if finds object that has prop and value specified in objToFindBy argument,
-it stops the walk and returns the object. If none is found, it returns false. */
+/* It iterates through each deep nested object and if finds object that has prop and value specified in objToFindBy
+argument, it stops the walk and returns the object. If none is found, it returns false. */
 
 const findFirst = function (tree, childrenKey, objToFindBy) {
   let objToReturn = false;
@@ -9,25 +9,17 @@ const findFirst = function (tree, childrenKey, objToFindBy) {
     const findValue = objToFindBy[findKey];
     if (tree[findKey] === findValue) {
       objToReturn = tree;
-      return;
-    } else if (tree[childrenKey]) {
+      found = true;
+      return objToReturn;
+    } else if (tree.hasOwnProperty(childrenKey)) {
       for (let n of tree[childrenKey]) {
-        if (n[findKey] === findValue) {
-          objToReturn = n;
-          found = true;
-          break;
-        } else if (n.hasOwnProperty(childrenKey)) {
-          if (!found) {
-            innerFunc(n, childrenKey, objToFindBy);
-          }
+        if (!found) {
+          innerFunc(n, childrenKey, objToFindBy);
         }
       }
-      return;
     }
   }
-  if (!found) {
-    innerFunc(tree, childrenKey, objToFindBy);
-  }
+  innerFunc(tree, childrenKey, objToFindBy);
   return objToReturn;
 };
 
