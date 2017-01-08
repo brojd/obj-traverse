@@ -1,5 +1,5 @@
 /* It iterates through each level and if finds object that has prop and value specified in objToFindBy argument,
-it stops the walk and return the object */
+it stops the walk and returns the object. If none is found, it returns false. */
 
 const findFirst = function (tree, childrenKey, objToFindBy) {
   let objToReturn = false;
