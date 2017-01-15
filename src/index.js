@@ -1,8 +1,4 @@
-export default class Library {
-  constructor() {
-    this._name = 'Library';
-  }
-  get name() {
-    return this._name;
-  }
-}
+import { findFirst } from './findFirst/findFirst';
+import { findAll } from './findAll/findAll';
+
+export { findFirst, findAll };
