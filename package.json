@@ -32,5 +32,8 @@
     "commonjs"
   ],
   "author": "Dominik Broj",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "lodash.isequal": "^4.5.0"
+  }
 }
