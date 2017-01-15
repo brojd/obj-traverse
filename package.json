@@ -1,7 +1,7 @@
 {
-  "name": "webpack-library-starter",
-  "version": "0.1.3",
-  "description": "Produce universal library with webpack and es6",
+  "name": "obj-traverse",
+  "version": "0.1.0",
+  "description": "Walk recursively between nodes in deeply nested objects",
   "main": "lib/library.js",
   "scripts": {
     "build": "webpack --mode=build",
@@ -22,10 +22,6 @@
     "webpack": "1.12.9",
     "yargs": "3.32.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/krasimir/webpack-library-starter.git"
-  },
   "keywords": [
     "webpack",
     "es6",
@@ -35,10 +31,9 @@
     "umd",
     "commonjs"
   ],
-  "author": "Krasimir Tsonev",
+  "author": "Dominik Broj",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/krasimir/webpack-library-starter/issues"
-  },
-  "homepage": "https://github.com/krasimir/webpack-library-starter"
+  "dependencies": {
+    "lodash.isequal": "^4.5.0"
+  }
 }
