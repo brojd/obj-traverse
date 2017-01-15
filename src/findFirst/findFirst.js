@@ -5,9 +5,12 @@ const findFirst = function (tree, childrenKey, objToFindBy) {
   let objToReturn = false;
   let found = false;
   function innerFunc(tree, childrenKey, objToFindBy) {
-    const findKey = Object.keys(objToFindBy)[0];
-    const findValue = objToFindBy[findKey];
-    if (tree[findKey] === findValue) {
+    const findKeys = Object.keys(objToFindBy);
+    let findSuccess = false;
+    findKeys.forEach((key) => {
+      tree[key] === objToFindBy[key] ? findSuccess = true : findSuccess = false;
+    });
+    if (findSuccess) {
       objToReturn = tree;
       found = true;
       return objToReturn;
