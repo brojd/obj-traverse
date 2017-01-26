@@ -26,13 +26,15 @@ const findAndModifyFirst = function (tree, childrenKey, objToFindBy, replacement
     }
   }
   innerFunc(tree, childrenKey, objToFindBy, replacementObj);
-  for (let prop in reference) {
-    delete reference[prop];
+  if (found) {
+    for (let prop in reference) {
+      delete reference[prop];
+    }
+    for (let prop in replacementObj) {
+      reference[prop] = replacementObj[prop];
+    }
   }
-  for (let prop in replacementObj) {
-    reference[prop] = replacementObj[prop];
-  }
-  return tree;
+  return found ? tree : false;
 };
 
 export default findAndModifyFirst;
