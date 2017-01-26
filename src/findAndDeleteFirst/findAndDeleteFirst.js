@@ -5,6 +5,7 @@ argument, it deletes it, stops the walk and returns the whole tree.
 If none is found, it returns false. */
 
 const findAndDeleteFirst = function (tree, childrenKey, objToFindBy) {
+  let treeModified = false;
   const findKeys = Object.keys(objToFindBy);
   let findSuccess = false;
   findKeys.forEach((key) => {
@@ -24,6 +25,7 @@ const findAndDeleteFirst = function (tree, childrenKey, objToFindBy) {
         });
         if (findSuccess) {
           tree[childrenKey].splice(index, 1);
+          treeModified = true;
           break;
         } else if (tree[childrenKey][index].hasOwnProperty(childrenKey)) {
           innerFunc(tree[childrenKey][index], childrenKey, objToFindBy);
@@ -33,6 +35,9 @@ const findAndDeleteFirst = function (tree, childrenKey, objToFindBy) {
     }
   }
   innerFunc(tree, childrenKey, objToFindBy);
+  if (!treeModified) {
+    return false;
+  }
   return tree;
 };
 
