@@ -90,6 +90,9 @@ const objTreeSameProps = {
           city2: 'city2'
         }
       ]
+    },
+    {
+      name7: 'name7'
     }
   ]
 };
