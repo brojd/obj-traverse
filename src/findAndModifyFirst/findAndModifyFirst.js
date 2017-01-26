@@ -1,7 +1,7 @@
 import isEqual from 'lodash.isequal';
 
 /* It iterates through each deep nested object and if finds object that has prop and value specified in objToFindBy
-argument, it replaces the current object with replacementObj and return the whole tree.
+argument, it replaces the current object with replacementObj, stops recursive walk and returns the whole tree.
 If none is found, it returns false. */
 
 const findAndModifyFirst = function (tree, childrenKey, objToFindBy, replacementObj) {
