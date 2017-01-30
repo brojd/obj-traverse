@@ -1,10 +1,10 @@
 import isEqual from 'lodash.isequal';
 
 /* It iterates through each deep nested object and if finds object that has prop and value specified in objToFindBy
-argument, it deletes it, stops the walk and returns the whole tree.
-If none is found, it returns false. */
+argument, it deletes it, continue the walk and returns the whole tree when finished.
+If none of objects is found, it returns false. */
 
-const findAndDeleteFirst = function (tree, childrenKey, objToFindBy) {
+const findAndDeleteAll = function (tree, childrenKey, objToFindBy) {
   let treeModified = false;
   const findKeys = Object.keys(objToFindBy);
   let findSuccess = false;
@@ -17,7 +17,7 @@ const findAndDeleteFirst = function (tree, childrenKey, objToFindBy) {
   }
   function innerFunc(tree, childrenKey, objToFindBy) {
     if (tree[childrenKey]) {
-      for (let index = 0; index < tree[childrenKey].length; index++) {
+      for (let index = tree[childrenKey].length - 1; index >= 0; index--) {
         const findKeys = Object.keys(objToFindBy);
         let findSuccess = false;
         findKeys.forEach((key) => {
@@ -26,8 +26,8 @@ const findAndDeleteFirst = function (tree, childrenKey, objToFindBy) {
         if (findSuccess) {
           tree[childrenKey].splice(index, 1);
           treeModified = true;
-          break;
-        } else if (tree[childrenKey][index].hasOwnProperty(childrenKey)) {
+        }
+        if (tree[childrenKey][index].hasOwnProperty(childrenKey)) {
           innerFunc(tree[childrenKey][index], childrenKey, objToFindBy);
         }
       }
@@ -41,4 +41,4 @@ const findAndDeleteFirst = function (tree, childrenKey, objToFindBy) {
   return tree;
 };
 
-export default findAndDeleteFirst;
+export default findAndDeleteAll;
