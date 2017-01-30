@@ -22,7 +22,7 @@ describe('testing findAndDeleteFirst()', () => {
     expect(modifiedObj2.children[0]).to.eql({ name6: 'name6', city2: 'city2' });
   });
   it('should modify root object', () => {
-    expect(modifiedObj3).to.equal(null);
+    expect(modifiedObj3).to.eql({});
   });
   it('should return false if none of the objects is found', () => {
     expect(modifiedObj4).to.equal(false);

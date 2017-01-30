@@ -12,7 +12,7 @@ const findAndDeleteFirst = function (tree, childrenKey, objToFindBy) {
     isEqual(tree[key], objToFindBy[key]) ? findSuccess = true : findSuccess = false;
   });
   if (findSuccess) {
-    tree = null;
+    Object.keys(tree).forEach((key) => delete tree[key]);
     return tree;
   }
   function innerFunc(tree, childrenKey, objToFindBy) {
