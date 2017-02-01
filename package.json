@@ -1,8 +1,8 @@
 {
   "name": "obj-traverse",
   "version": "0.1.0",
-  "description": "Walk recursively between nodes in deeply nested objects",
-  "main": "lib/library.js",
+  "description": "Small and lightweight library that enables you to traverse deep nested objects and edit them",
+  "main": "lib/obj-traverse.js",
   "scripts": {
     "build": "webpack --mode=build",
     "dev": "webpack --progress --colors --watch --mode=dev",
