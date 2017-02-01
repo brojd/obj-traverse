@@ -5,4 +5,4 @@ import findAndModifyAll from './findAndModifyAll/findAndModifyAll';
 import findAndDeleteFirst from './findAndDeleteFirst/findAndDeleteFirst';
 import findAndDeleteAll from './findAndDeleteAll/findAndDeleteAll';
 
-export { findFirst, findAll, findAndModifyFirst, findAndModifyAll, findAndDeleteFirst, findAndDeleteAll };
+module.exports = { findFirst, findAll, findAndModifyFirst, findAndModifyAll, findAndDeleteFirst, findAndDeleteAll };
