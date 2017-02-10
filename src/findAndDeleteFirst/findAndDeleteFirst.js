@@ -16,10 +16,9 @@ const findAndDeleteFirst = function (tree, childrenKey, objToFindBy) {
     return tree;
   }
   function innerFunc(tree, childrenKey, objToFindBy) {
+    let findSuccess = false;
     if (tree[childrenKey]) {
       for (let index = 0; index < tree[childrenKey].length; index++) {
-        const findKeys = Object.keys(objToFindBy);
-        let findSuccess = false;
         findKeys.forEach((key) => {
           isEqual(tree[childrenKey][index][key], objToFindBy[key]) ? findSuccess = true : findSuccess = false;
         });
@@ -27,11 +26,11 @@ const findAndDeleteFirst = function (tree, childrenKey, objToFindBy) {
           tree[childrenKey].splice(index, 1);
           treeModified = true;
           break;
-        } else if (tree[childrenKey][index].hasOwnProperty(childrenKey)) {
-          innerFunc(tree[childrenKey][index], childrenKey, objToFindBy);
         }
       }
-
+    }
+    if (!findSuccess && !treeModified && tree[childrenKey][index].hasOwnProperty(childrenKey)) {
+      innerFunc(tree[childrenKey][index], childrenKey, objToFindBy);
     }
   }
   innerFunc(tree, childrenKey, objToFindBy);
