@@ -4,41 +4,31 @@ import isEqual from 'lodash.isequal';
 argument, it deletes it, stops the walk and returns the whole tree.
 If none is found, it returns false. */
 
-const findAndDeleteFirst = function (tree, childrenKey, objToFindBy) {
-  let treeModified = false;
-  const findKeys = Object.keys(objToFindBy);
-  let findSuccess = false;
-  findKeys.forEach((key) => {
-    isEqual(tree[key], objToFindBy[key]) ? findSuccess = true : findSuccess = false;
-  });
-  if (findSuccess) {
-    Object.keys(tree).forEach((key) => delete tree[key]);
-    return tree;
-  }
-  function innerFunc(tree, childrenKey, objToFindBy) {
-    if (tree[childrenKey]) {
-      for (let index = 0; index < tree[childrenKey].length; index++) {
-        const findKeys = Object.keys(objToFindBy);
-        let findSuccess = false;
+const findAndDeleteFirst = (tree, childrenKey, objToFindBy) => {
+  let treeToReturn = tree;
+  let modifiedObj = false;
+  const findInChildren = (obj, childrenKey, objToFindBy) => {
+    const findKeys = Object.keys(objToFindBy);
+    let findSuccess = false;
+    if (obj.hasOwnProperty(childrenKey)) {
+      for (let i = 0; i < obj[childrenKey].length; i++) {
         findKeys.forEach((key) => {
-          isEqual(tree[childrenKey][index][key], objToFindBy[key]) ? findSuccess = true : findSuccess = false;
+          isEqual(obj[childrenKey][i][key], objToFindBy[key]) ? findSuccess = true : findSuccess = false;
         });
         if (findSuccess) {
-          tree[childrenKey].splice(index, 1);
-          treeModified = true;
+          obj[childrenKey].splice(i, 1);
+          modifiedObj = true;
           break;
-        } else if (tree[childrenKey][index].hasOwnProperty(childrenKey)) {
-          innerFunc(tree[childrenKey][index], childrenKey, objToFindBy);
         }
       }
-
+      if (!findSuccess) {
+        obj[childrenKey].forEach(child => findInChildren(child, childrenKey, objToFindBy));
+      }
     }
-  }
-  innerFunc(tree, childrenKey, objToFindBy);
-  if (!treeModified) {
-    return false;
-  }
-  return tree;
+    return obj;
+  };
+  findInChildren(tree, childrenKey, objToFindBy);
+  return modifiedObj ? treeToReturn : false;
 };
 
 export default findAndDeleteFirst;

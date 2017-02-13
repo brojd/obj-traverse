@@ -35,10 +35,7 @@ const findAndDeleteAll = function (tree, childrenKey, objToFindBy) {
     }
   }
   innerFunc(tree, childrenKey, objToFindBy);
-  if (!treeModified) {
-    return false;
-  }
-  return tree;
+  return treeModified ? tree : false;
 };
 
 export default findAndDeleteAll;
