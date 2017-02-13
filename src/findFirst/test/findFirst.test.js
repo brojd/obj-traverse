@@ -36,6 +36,6 @@ describe('testing findFirst()', () => {
   });
   it('should find and return first matching object', () => {
     expect(findFirst(objTreeSameProps, 'children', {city2: 'city2'})).to.have.property('name2', 'foo2');
-    expect(findFirst(objTreeSameProps, 'children', {name6: 'name6'})).to.have.property('city6', 'city6');
+    expect(findFirst(objTreeSameProps, 'children', {name6: 'name6'})).to.have.property('city2', 'city2');
   });
 });
