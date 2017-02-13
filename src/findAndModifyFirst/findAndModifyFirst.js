@@ -4,37 +4,38 @@ import isEqual from 'lodash.isequal';
 argument, it replaces the current object with replacementObj, stops recursive walk and returns the whole tree.
 If none is found, it returns false. */
 
-const findAndModifyFirst = function (tree, childrenKey, objToFindBy, replacementObj) {
-  let found = false;
-  let reference;
-  function innerFunc(tree, childrenKey, objToFindBy, replacementObj) {
-    const findKeys = Object.keys(objToFindBy);
-    let findSuccess = false;
-    findKeys.forEach((key) => {
-      isEqual(tree[key], objToFindBy[key]) ? findSuccess = true : findSuccess = false;
-    });
-    if (findSuccess) {
-      reference = tree;
-      found = true;
-      return reference;
-    } else if (tree.hasOwnProperty(childrenKey)) {
-      for (let n of tree[childrenKey]) {
-        if (!found) {
-          innerFunc(n, childrenKey, objToFindBy, replacementObj);
+const findAndModifyFirst = (tree, childrenKey, objToFindBy, replacementObj) => {
+  let treeToReturn = tree;
+  let findSuccess = false;
+  let modifiedObj = false;
+  const findKeys = Object.keys(objToFindBy);
+  findKeys.forEach((key) => {
+    isEqual(tree[key], objToFindBy[key]) ? findSuccess = true : findSuccess = false;
+  });
+  if (findSuccess) {
+    tree = replacementObj;
+    return tree;
+  }
+  const findInChildren = (obj, childrenKey, objToFindBy, replacementObj) => {
+    if (obj.hasOwnProperty(childrenKey)) {
+      for (let i = 0; i < obj[childrenKey].length; i++) {
+        findKeys.forEach((key) => {
+          isEqual(obj[childrenKey][i][key], objToFindBy[key]) ? findSuccess = true : findSuccess = false;
+        });
+        if (findSuccess) {
+          obj[childrenKey][i] = replacementObj;
+          modifiedObj = true;
+          break;
         }
       }
+      if (!findSuccess) {
+        obj[childrenKey].forEach(child => findInChildren(child, childrenKey, objToFindBy, replacementObj));
+      }
     }
-  }
-  innerFunc(tree, childrenKey, objToFindBy, replacementObj);
-  if (found) {
-    for (let prop in reference) {
-      delete reference[prop];
-    }
-    for (let prop in replacementObj) {
-      reference[prop] = replacementObj[prop];
-    }
-  }
-  return found ? tree : false;
+    return obj;
+  };
+  findInChildren(tree, childrenKey, objToFindBy, replacementObj);
+  return modifiedObj ? treeToReturn : false;
 };
 
 export default findAndModifyFirst;
