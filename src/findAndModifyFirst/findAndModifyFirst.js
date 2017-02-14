@@ -13,7 +13,12 @@ const findAndModifyFirst = (tree, childrenKey, objToFindBy, replacementObj) => {
     isEqual(tree[key], objToFindBy[key]) ? findSuccess = true : findSuccess = false;
   });
   if (findSuccess) {
-    tree = replacementObj;
+    for (let prop in tree) {
+      delete tree[prop];
+    }
+    for (let prop in replacementObj) {
+      tree[prop] = replacementObj[prop];
+    }
     return tree;
   }
   const findInChildren = (obj, childrenKey, objToFindBy, replacementObj) => {

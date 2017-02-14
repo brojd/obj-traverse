@@ -9,6 +9,7 @@ const expect = chai.expect;
 describe('testing findAndModifyFirst()', () => {
   let objTreeCopy = JSON.parse(JSON.stringify(objTree));
   let objTreeCopy2 = JSON.parse(JSON.stringify(objTreeCopy));
+  let objTreeCopy3 = JSON.parse(JSON.stringify(objTreeCopy2));
   let objTreeSamePropsCopy = JSON.parse(JSON.stringify(objTreeSameProps));
   let objTreeSamePropsCopy2 = JSON.parse(JSON.stringify(objTreeSamePropsCopy));
   let objTreeSamePropsCopy3 = JSON.parse(JSON.stringify(objTreeSamePropsCopy2));
@@ -26,10 +27,10 @@ describe('testing findAndModifyFirst()', () => {
     expect(modifiedObj4.children[4]).to.eql({changed4: [1, 2, 3]});
   });
   it('should modify root object', () => {
-    expect(modifiedObj5).to.eql({a: 1});
+    expect(objTreeCopy2).to.eql({a: 1});
     expect(modifiedObj6).to.eql({name: 'rootModified'});
   });
   it('should return false if none of the objects is found', () => {
-    //expect(modifiedObj7).to.equal(false);
+    expect(modifiedObj7).to.equal(false);
   });
 });
