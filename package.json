@@ -1,6 +1,6 @@
 {
   "name": "obj-traverse",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Small and lightweight library that enables you to traverse deep nested objects and edit them",
   "main": "lib/obj-traverse.js",
   "scripts": {
