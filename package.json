@@ -23,13 +23,11 @@
     "yargs": "3.32.0"
   },
   "keywords": [
-    "webpack",
-    "es6",
-    "starter",
-    "library",
-    "universal",
-    "umd",
-    "commonjs"
+    "javascript",
+    "object",
+    "recursion",
+    "traverse",
+    "deep nested"
   ],
   "author": "Dominik Broj",
   "license": "MIT",
