@@ -18,7 +18,7 @@ b) ``` findAll(...) ```<br/>
 
 ## Demo
 
-You can visit http://dominik791.github.io/obj-traverse-demo and play with the library
+You can visit https://brojd.github.io/obj-traverse-demo/ and play with the library
 
 
 ## API
